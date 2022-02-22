@@ -1,5 +1,6 @@
 namespace EconomyPrototype {
 
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
@@ -8,9 +9,17 @@ namespace EconomyPrototype {
     public class ActivitiesManager : MonoBehaviour {
 
 
+		#region Public Fields
+
+		[SerializeField]
+        public CurrentResources CurrentResources;
+
+		#endregion
+
+
 		#region Public Methods
 
-        public void CancelCurrentActivity() {
+		public void CancelCurrentActivity() {
             CurrentActivityController = null;
 		}
 
@@ -24,14 +33,21 @@ namespace EconomyPrototype {
 			}
 		}
 
-        #endregion
+		#endregion
 
 
-        #region Private Fields
+		#region Unity Methods
 
-        [SerializeField]
-        private CinemachineVirtualCamera m_MainVCam;
+		private void OnDestroy() {
+            CurrentResources.Restore();
+		}
 
+		#endregion
+
+
+		#region Private Fields
+
+		[NonSerialized]
         private ActivityController m_CurrentActivity;
 
 		#endregion
