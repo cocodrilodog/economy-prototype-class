@@ -8,12 +8,20 @@ namespace EconomyPrototype {
     public class ResourcesDisplay : MonoBehaviour {
 
 
-		#region Unity Methods
+		#region Public Fields
 
-		private void Start() {
-			m_Meters[0].fillAmount = 0.25f;
-			m_Meters[1].fillAmount = 0.5f;
-			m_Meters[2].fillAmount = 0.75f;
+		[SerializeField]
+		public CurrentResources CurrentResources;
+
+		#endregion
+
+
+		#region Public Methods
+
+		public void OnResourceChange() {
+			m_Meters[0].fillAmount = CurrentResources.Current.A / 100;
+			m_Meters[1].fillAmount = CurrentResources.Current.B / 100;
+			m_Meters[2].fillAmount = CurrentResources.Current.C / 100;
 		}
 
 		#endregion

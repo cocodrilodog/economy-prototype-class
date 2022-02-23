@@ -18,6 +18,9 @@ namespace EconomyPrototype {
 		[SerializeField]
 		public ActivityProfile Profile;
 
+		[SerializeField]
+		public ResourcesDisplay ResourcesDisplay;
+
 		#endregion
 
 
@@ -128,6 +131,7 @@ namespace EconomyPrototype {
 			while (m_IsPlaying) {
 				PlaybackTime += Time.deltaTime;
 				CurrentResources.Current = CurrentResources.Current - Profile.ResourceConsumptionSpeed * Time.deltaTime;
+				ResourcesDisplay.OnResourceChange();
 				yield return null;
 			}
 		}
