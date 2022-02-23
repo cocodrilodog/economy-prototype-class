@@ -10,6 +10,17 @@ namespace EconomyPrototype {
     public class ActivityController : MonoBehaviour {
 
 
+		#region Public Fields
+
+		[SerializeField]
+		public CurrentResources CurrentResources;
+
+		[SerializeField]
+		public ActivityProfile Profile;
+
+		#endregion
+
+
 		#region Public Methods
 
 		public CinemachineVirtualCamera GetVCam() {
@@ -116,6 +127,7 @@ namespace EconomyPrototype {
 		private IEnumerator UpdatePlaybackTime() {
 			while (m_IsPlaying) {
 				PlaybackTime += Time.deltaTime;
+				CurrentResources.Current = CurrentResources.Current - Profile.ResourceConsumptionSpeed * Time.deltaTime;
 				yield return null;
 			}
 		}

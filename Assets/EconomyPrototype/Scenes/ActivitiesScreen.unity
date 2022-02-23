@@ -412,6 +412,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1200576535}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: Profile
+      value: 
+      objectReference: {fileID: 11400000, guid: b4d4aa39cda4418468440972fecd4c1d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
 --- !u!1 &1130624962
@@ -699,6 +703,10 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1200576535}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: Profile
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d70818960be7554dba68c4f2f0f8295, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
 --- !u!1 &1756773575
@@ -848,5 +856,9 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1200576535}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: Profile
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ff9e159d2ce84548b98015a88febb70, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}

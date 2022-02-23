@@ -41,9 +41,25 @@ namespace EconomyPrototype {
             return resultingResource;
         }
 
-        #endregion
+        public static Resource operator *(Resource resource, float value) {
+            Resource product = new Resource();
+            product.A = resource.A * value;
+            product.B = resource.B * value;
+            product.C = resource.C * value;
+            return product;
+        }
+
+		public static Resource operator *(float value, Resource resource) {
+			Resource product = new Resource();
+			product.A = resource.A * value;
+			product.B = resource.B * value;
+			product.C = resource.C * value;
+			return product;
+		}
+
+		#endregion
 
 
-    }
+	}
 
 }

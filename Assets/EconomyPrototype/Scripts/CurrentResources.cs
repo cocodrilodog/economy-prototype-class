@@ -4,7 +4,7 @@ namespace EconomyPrototype {
     using System.Collections.Generic;
     using UnityEngine;
 
-    [CreateAssetMenu(menuName ="Economy Prototype/Current Resources")]
+    [CreateAssetMenu(menuName = "Economy Prototype/Current Resources")]
     public class CurrentResources : ScriptableObject {
 
 

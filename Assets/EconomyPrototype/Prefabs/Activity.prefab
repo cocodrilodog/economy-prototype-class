@@ -453,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb156f1667820484e818bda15f381de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentResources: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
   m_VCam: {fileID: 3139940886215899212}
   m_PlaybackControls: {fileID: 3183061098441172197}
   m_PlaybackTimeText: {fileID: 6174418428181562403}
