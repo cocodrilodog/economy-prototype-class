@@ -664,6 +664,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: b4d4aa39cda4418468440972fecd4c1d, type: 2}
     - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: AppState
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
       propertyPath: ResourcesDisplay
       value: 
       objectReference: {fileID: 1663768512}
@@ -755,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfe55898f1b6f14e9b5c5cdf87a5b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentResources: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
+  AppState: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
 --- !u!1001 &1266607097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1129,6 +1133,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 8d70818960be7554dba68c4f2f0f8295, type: 2}
     - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: AppState
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
       propertyPath: ResourcesDisplay
       value: 
       objectReference: {fileID: 1663768512}
@@ -1172,7 +1180,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1200576535}
           m_TargetAssemblyTypeName: EconomyPrototype.ActivitiesManager, Assembly-CSharp
-          m_MethodName: CancelCurrentActivity
+          m_MethodName: CloseCurrentActivity
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1285,6 +1293,10 @@ PrefabInstance:
       propertyPath: Profile
       value: 
       objectReference: {fileID: 11400000, guid: 4ff9e159d2ce84548b98015a88febb70, type: 2}
+    - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
+      propertyPath: AppState
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
     - target: {fileID: 3139940886848276174, guid: fe4e17e7978e3d747bebffab4dc82da9, type: 3}
       propertyPath: ResourcesDisplay
       value: 

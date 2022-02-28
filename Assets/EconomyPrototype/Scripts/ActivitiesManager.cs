@@ -6,23 +6,42 @@ namespace EconomyPrototype {
     using UnityEngine;
     using Cinemachine;
 
+    /// <summary>
+    /// The main object that will manage the activities app.
+    /// </summary>
+    /// <remarks>
+    /// This chooses which is the current activity.
+    /// </remarks>
     public class ActivitiesManager : MonoBehaviour {
 
 
 		#region Public Fields
 
+		/// <summary>
+		/// A reference to the <see cref="EconomyPrototype.AppState"/> asset.
+		/// </summary>
+        [Tooltip("A reference to the AppState asset")]
 		[SerializeField]
-        public CurrentResources CurrentResources;
+        public AppState AppState;
 
 		#endregion
 
 
 		#region Public Methods
 
-		public void CancelCurrentActivity() {
+        /// <summary>
+        /// Closes the the current activity.
+        /// </summary>
+		public void CloseCurrentActivity() {
             CurrentActivityController = null;
 		}
 
+        /// <summary>
+        /// Handles the click event raised by each of the activities.
+        /// </summary>
+        /// <param name="newActivityController">
+        /// The activity controller that raised the event.
+        /// </param>
 		public void Activity_PointerClick(ActivityController newActivityController) {
             if(newActivityController == CurrentActivityController) {
                 // If the new activity is the current one we go back to the main camera
@@ -39,7 +58,7 @@ namespace EconomyPrototype {
 		#region Unity Methods
 
 		private void OnDestroy() {
-            CurrentResources.Restore();
+            AppState.Restore();
 		}
 
 		#endregion

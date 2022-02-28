@@ -11,7 +11,7 @@ namespace EconomyPrototype {
 		#region Public Fields
 
 		[SerializeField]
-		public CurrentResources CurrentResources;
+		public AppState CurrentResources;
 
 		#endregion
 
@@ -19,9 +19,9 @@ namespace EconomyPrototype {
 		#region Public Methods
 
 		public void OnResourceChange() {
-			m_Meters[0].fillAmount = CurrentResources.Current.A / 100;
-			m_Meters[1].fillAmount = CurrentResources.Current.B / 100;
-			m_Meters[2].fillAmount = CurrentResources.Current.C / 100;
+			m_Meters[0].fillAmount = CurrentResources.CurrentResources.A / 100;
+			m_Meters[1].fillAmount = CurrentResources.CurrentResources.B / 100;
+			m_Meters[2].fillAmount = CurrentResources.CurrentResources.C / 100;
 		}
 
 		#endregion

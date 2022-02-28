@@ -5,18 +5,33 @@ namespace EconomyPrototype {
     using System.Collections.Generic;
     using UnityEngine;
 
+    /// <summary>
+    /// The unit that will help us to count the consumption of the resources.
+    /// </summary>
     [Serializable]
     public struct Resource {
 
 
-		#region Public Fields
+        #region Public Fields
 
+        /// <summary>
+        /// Any resource. For the example it is named "A".
+        /// </summary>
+        [Tooltip("Any resource. For the example it is named \"A\" ")]
 		[SerializeField]
         public float A;
 
+        /// <summary>
+        /// Any resource. For the example it is named "B".
+        /// </summary>
+        [Tooltip("Any resource. For the example it is named \"B\" ")]
         [SerializeField]
         public float B;
 
+        /// <summary>
+        /// Any resource. For the example it is named "C".
+        /// </summary>
+        [Tooltip("Any resource. For the example it is named \"C\" ")]
         [SerializeField]
         public float C;
 
