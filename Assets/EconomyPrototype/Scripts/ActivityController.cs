@@ -72,7 +72,6 @@ namespace EconomyPrototype {
 		public void Deactivate() {
 			m_PlaybackControls.SetActive(false);
 			m_PauseButton.SetActive(false);
-			Stop();
 		}
 
 		/// <summary>
@@ -95,6 +94,7 @@ namespace EconomyPrototype {
 			m_PlayButton.SetActive(true);
 			m_PauseButton.SetActive(false);
 			PlaybackTime = 0;
+			AppState.CompletedActivities++;
 		}
 
 		/// <summary>

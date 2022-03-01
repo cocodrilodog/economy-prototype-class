@@ -5,6 +5,7 @@ namespace EconomyPrototype {
     using System.Collections.Generic;
     using UnityEngine;
     using Cinemachine;
+    using UnityEngine.UI;
 
     /// <summary>
     /// The main object that will manage the activities app.
@@ -23,6 +24,15 @@ namespace EconomyPrototype {
         [Tooltip("A reference to the AppState asset")]
 		[SerializeField]
         public AppState AppState;
+
+        [SerializeField]
+        public AppSettings AppSettings;
+
+        [SerializeField]
+        public Image Clock;
+
+        [SerializeField]
+        public GameEndPopup GameEndPopup;
 
 		#endregion
 
@@ -57,6 +67,11 @@ namespace EconomyPrototype {
 
 		#region Unity Methods
 
+		private void Start() {
+            GameEndPopup.gameObject.SetActive(false);
+            StartCoroutine(UpdateSession());
+		}
+
 		private void OnDestroy() {
             AppState.Restore();
 		}
@@ -83,6 +98,7 @@ namespace EconomyPrototype {
                 // If there is one current activity, I want to deactivate its camera
 				if (m_CurrentActivity != null) {
                     m_CurrentActivity.GetVCam().Priority = 9;
+                    m_CurrentActivity.Stop();
                     m_CurrentActivity.Deactivate();
                 }
 
@@ -120,6 +136,39 @@ namespace EconomyPrototype {
 
             }
         }
+
+		#endregion
+
+
+		#region Private Methods
+
+        private IEnumerator UpdateSession() {
+
+            // This is my time variable
+            float time = 0;
+
+            // The while loop will repeat itself until time reaches the session duration
+			while (time < AppSettings.SessionDuration) { 
+
+                // Increase the time here
+                time = time + Time.deltaTime;
+
+                // A number from 0 to 1 that shows the progress of the time
+                // with respect to the duration
+                float progress = time / AppSettings.SessionDuration;
+                // Now we use that number to fill the clock
+                Clock.fillAmount = progress;
+
+                // Make the while loop to wait for one frame to continue
+                yield return null;
+
+			}
+
+            Debug.Log("Time is over");
+            GameEndPopup.gameObject.SetActive(true);
+            GameEndPopup.ShowMessage("Time is over! Sorry :(");
+
+		}
 
 		#endregion
 

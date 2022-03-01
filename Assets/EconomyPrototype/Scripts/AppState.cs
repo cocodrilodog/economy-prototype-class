@@ -25,6 +25,9 @@ namespace EconomyPrototype {
         [SerializeField]
         public Resource CurrentResources;
 
+        [SerializeField]
+        public int CompletedActivities;
+
         #endregion
 
 
@@ -42,6 +45,7 @@ namespace EconomyPrototype {
             CurrentResources.A = 100;
             CurrentResources.B = 100;
             CurrentResources.C = 100;
+            CompletedActivities = 0;
         }
 
         #endregion
