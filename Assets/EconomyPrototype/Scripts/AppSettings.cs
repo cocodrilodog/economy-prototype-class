@@ -21,6 +21,9 @@ namespace EconomyPrototype {
         [SerializeField]
         public float MinActivities;
 
+        [SerializeField]
+        public float MinProceeds;
+
     }
 
 }

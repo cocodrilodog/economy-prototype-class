@@ -6,6 +6,7 @@ namespace EconomyPrototype {
     using System.Collections.Generic;
 	using TMPro;
     using UnityEngine;
+	using UnityEngine.UI;
 
 	/// <summary>
 	/// This controls the activity game objects and is owned by
@@ -15,7 +16,7 @@ namespace EconomyPrototype {
 	/// This is in charge of creating a playback-like behaviour 
 	/// to run the activities.
 	/// </remarks>
-    public class ActivityController : MonoBehaviour {
+	public class ActivityController : MonoBehaviour {
 
 
 		#region Public Fields
@@ -28,6 +29,9 @@ namespace EconomyPrototype {
 		[Tooltip("This is a reference to AppState asset.")]
 		[SerializeField]
 		public AppState AppState;
+
+		[SerializeField]
+		public AppSettings AppSettings;
 
 		/// <summary>
 		/// This is the profile that will be used by this activity.
@@ -51,6 +55,9 @@ namespace EconomyPrototype {
 
 		[SerializeField]
 		public ActivityChecks ActivityChecks;
+
+		[SerializeField]
+		public Image ProceedsMeter;
 
 		#endregion
 
@@ -201,10 +208,19 @@ namespace EconomyPrototype {
 
 		private IEnumerator UpdatePlaybackTime() {
 			while (m_IsPlaying) {
+
 				PlaybackTime += Time.deltaTime;
+
+				// Consume the resources
 				AppState.CurrentResources = AppState.CurrentResources - Profile.ResourceConsumptionSpeed * Time.deltaTime;
 				ResourcesDisplay.OnResourceChange();
+
+				// Here we obtain the proceeds
+				AppState.CurrentProceeds = AppState.CurrentProceeds + Profile.ProceedsSpeed * Time.deltaTime;
+				ProceedsMeter.fillAmount = AppState.CurrentProceeds / AppSettings.MinProceeds;
+
 				yield return null;
+
 			}
 		}
 

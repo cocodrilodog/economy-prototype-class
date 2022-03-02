@@ -13,6 +13,9 @@ namespace EconomyPrototype {
 		[SerializeField]
         public Resource ResourceConsumptionSpeed;
 
+        [SerializeField]
+        public float ProceedsSpeed;
+
 		#endregion
 
 

@@ -28,6 +28,9 @@ namespace EconomyPrototype {
         [SerializeField]
         public int CompletedActivities;
 
+        [SerializeField]
+        public float CurrentProceeds;
+
         #endregion
 
 
@@ -42,10 +45,15 @@ namespace EconomyPrototype {
         /// and reset them whenever we need to do so.
         /// </remarks>
         public void Restore() {
+
             CurrentResources.A = 100;
             CurrentResources.B = 100;
             CurrentResources.C = 100;
+
             CompletedActivities = 0;
+
+            CurrentProceeds = 0;
+
         }
 
         #endregion
