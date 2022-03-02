@@ -49,6 +49,9 @@ namespace EconomyPrototype {
 		[SerializeField]
 		public ResourcesDisplay ResourcesDisplay;
 
+		[SerializeField]
+		public ActivityChecks ActivityChecks;
+
 		#endregion
 
 
@@ -89,12 +92,19 @@ namespace EconomyPrototype {
 		/// it also resets the time of the playback.
 		/// </remarks>
 		public void Stop() {
-			Debug.Log("Stop");
-			m_IsPlaying = false;
-			m_PlayButton.SetActive(true);
-			m_PauseButton.SetActive(false);
-			PlaybackTime = 0;
-			AppState.CompletedActivities++;
+			if (PlaybackTime > 0) {
+
+				PlaybackTime = 0;
+				
+				Debug.Log("Stop");
+				m_IsPlaying = false;
+				m_PlayButton.SetActive(true);
+				m_PauseButton.SetActive(false);
+
+				AppState.CompletedActivities++;
+				ActivityChecks.EnableChecks(AppState.CompletedActivities);
+
+			}
 		}
 
 		/// <summary>

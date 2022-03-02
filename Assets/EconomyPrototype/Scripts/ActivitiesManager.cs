@@ -70,6 +70,7 @@ namespace EconomyPrototype {
 		private void Start() {
             GameEndPopup.gameObject.SetActive(false);
             StartCoroutine(UpdateSession());
+            StartCoroutine(CheckResources());
 		}
 
 		private void OnDestroy() {
@@ -164,11 +165,39 @@ namespace EconomyPrototype {
 
 			}
 
-            Debug.Log("Time is over");
-            GameEndPopup.gameObject.SetActive(true);
-            GameEndPopup.ShowMessage("Time is over! Sorry :(");
+            TimeOut();
 
 		}
+
+        private void TimeOut() {
+
+            Time.timeScale = 0;
+            GameEndPopup.gameObject.SetActive(true);
+
+            if(AppState.CompletedActivities >= AppSettings.MinActivities) {
+                // Here I win
+                GameEndPopup.ShowMessage($"You win!\nYou completed {AppSettings.MinActivities} activities or more.");
+			} else {
+                // Here I lose
+                GameEndPopup.ShowMessage($"You lose :(\nYou didn't complete at least {AppSettings.MinActivities} activities.");
+            }
+
+        }
+
+        private IEnumerator CheckResources() {
+            // This will be runningas long as the 3 resources are greater than 0.
+            while(AppState.CurrentResources.A > 0 && AppState.CurrentResources.B > 0 && AppState.CurrentResources.C > 0) {
+                yield return new WaitForSeconds(0.2f);
+			}
+            // When that condition is not met anymore, the following line will run.
+            OutOfResources();
+		}
+
+        private void OutOfResources() {
+            Time.timeScale = 0;
+            GameEndPopup.gameObject.SetActive(true);
+            GameEndPopup.ShowMessage($"You lose :(\nYou ran out of resources.");
+        }
 
 		#endregion
 
