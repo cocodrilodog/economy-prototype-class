@@ -16,21 +16,37 @@ namespace EconomyPrototype {
     public class ActivitiesManager : MonoBehaviour {
 
 
-		#region Public Fields
+        #region Public Fields
 
-		/// <summary>
-		/// A reference to the <see cref="EconomyPrototype.AppState"/> asset.
-		/// </summary>
+        [Header("Data")]
+
+        /// <summary>
+        /// A reference to the <see cref="EconomyPrototype.AppSettings"/> asset.
+        /// </summary>
+        [Tooltip("A reference to the AppSettings asset")]
+		[SerializeField]
+        public AppSettings AppSettings;
+
+        /// <summary>
+        /// A reference to the <see cref="EconomyPrototype.AppState"/> asset.
+        /// </summary>
         [Tooltip("A reference to the AppState asset")]
 		[SerializeField]
         public AppState AppState;
 
-        [SerializeField]
-        public AppSettings AppSettings;
+        [Header("UI")]
 
+        /// <summary>
+        /// An image that fills radially, like a clock
+        /// </summary>
+        [Tooltip("An image that fills radially, like a clock")]
         [SerializeField]
         public Image Clock;
 
+        /// <summary>
+        /// The popup that is shown at the end of the game.
+        /// </summary>
+        [Tooltip("The popup that is shown at the end of the game.")]
         [SerializeField]
         public GameEndPopup GameEndPopup;
 
@@ -70,6 +86,7 @@ namespace EconomyPrototype {
 		private void Start() {
             GameEndPopup.gameObject.SetActive(false);
             StartCoroutine(UpdateSession());
+            StartCoroutine(CheckResources());
 		}
 
 		private void OnDestroy() {
@@ -164,11 +181,63 @@ namespace EconomyPrototype {
 
 			}
 
-            Debug.Log("Time is over");
-            GameEndPopup.gameObject.SetActive(true);
-            GameEndPopup.ShowMessage("Time is over! Sorry :(");
+            // The session ends here
+            TimeOut();
 
 		}
+
+        private void TimeOut() {
+
+            // Freeze time
+            Time.timeScale = 0;
+            // Show popup
+            GameEndPopup.gameObject.SetActive(true);
+
+            if (AppState.CompletedActivities >= AppSettings.MinActivities && 
+                AppState.CurrentProceeds >= AppSettings.MinProceeds) {
+                // Here I win
+                GameEndPopup.ShowMessage(
+                    $"You won!\nYou completed {AppSettings.MinActivities} activities or more and you collected {AppSettings.MinProceeds} proceeds."
+                );
+			} else {
+                // Here I lose
+                //
+                // Create a composite string
+                string message = "You Lose :(";
+                // It may be due to few activities
+                if(AppState.CompletedActivities < AppSettings.MinActivities) {
+                    message += $"\nYou didn't complete at least {AppSettings.MinActivities} activities.";
+                }
+                // and / or because not enough proceeds
+                if (AppState.CurrentProceeds < AppSettings.MinProceeds) {
+                    message += $"\nYou didn't collect at least {AppSettings.MinProceeds} proceeds.";
+                }
+                GameEndPopup.ShowMessage(message);
+            }
+
+        }
+
+        private IEnumerator CheckResources() {
+            // This will be running as long as the 3 resources are greater than 0.
+            while(AppState.CurrentResources.A > 0 && AppState.CurrentResources.B > 0 && AppState.CurrentResources.C > 0) {
+                // We can check this less frequently than every frame, so every 0.2 secs
+                yield return new WaitForSeconds(0.2f);
+			}
+            // When that condition is not met anymore, the following line will run.
+            // This is when any resource was fully spent
+            OutOfResources();
+		}
+
+        private void OutOfResources() {
+
+            // Freeze time
+            Time.timeScale = 0;
+            // Show popup
+            GameEndPopup.gameObject.SetActive(true);
+
+            GameEndPopup.ShowMessage($"You lose :(\nYou ran out of resources.");
+
+        }
 
 		#endregion
 

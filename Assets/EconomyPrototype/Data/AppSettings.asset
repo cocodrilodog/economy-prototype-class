@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0323135f64e3849acf4b37bd0d0544, type: 3}
   m_Name: AppSettings
   m_EditorClassIdentifier: 
-  SessionDuration: 20
+  SessionDuration: 30
   MinActivities: 2
+  MinProceeds: 100
