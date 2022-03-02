@@ -5,15 +5,30 @@ namespace EconomyPrototype {
     using System.Collections.Generic;
     using UnityEngine;
 
+	/// <summary>
+	/// The UI object that creates and controls the check images associated
+	/// with the <see cref="AppState.CompletedActivities"/>
+	/// </summary>
     public class ActivityChecks : MonoBehaviour {
 
 
         #region Public Fields
 
+		[Header("Data")]
+
+		/// <summary>
+		/// A reference to the <see cref="EconomyPrototype.AppSettings"/> asset.
+		/// </summary>
+		[Tooltip("A reference to the AppSettings asset")]
 		[SerializeField]
 		public AppSettings AppSettings;
 
-        [SerializeField]
+		[Header("Prefab")]
+
+		/// <summary>
+		/// The prefab to create checks.
+		/// </summary>
+		[SerializeField]
         public GameObject CheckPrefab;
 
 		#endregion
@@ -21,6 +36,10 @@ namespace EconomyPrototype {
 
 		#region Public Fields
 
+		/// <summary>
+		/// Enables the specified amount of checks in order and disables the rest.
+		/// </summary>
+		/// <param name="count">The number of checks to enable.</param>
 		public void EnableChecks(int count) {
 			for(int i = 0; i < m_Checks.Count; i++) {
 				if (i < count) {

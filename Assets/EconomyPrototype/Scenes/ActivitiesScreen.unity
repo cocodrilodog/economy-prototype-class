@@ -1166,8 +1166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cfe55898f1b6f14e9b5c5cdf87a5b68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppState: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
   AppSettings: {fileID: 11400000, guid: f31d2cdd3244975448c725240276147f, type: 2}
+  AppState: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
   Clock: {fileID: 2077242168}
   GameEndPopup: {fileID: 805654111}
 --- !u!1001 &1266607097
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b23910557f58094cab6e6f7fc27d239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentResources: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
+  AppState: {fileID: 11400000, guid: 4f0b77b1b0cb6484e90b6a2065131a86, type: 2}
   m_Meters:
   - {fileID: 956519376}
   - {fileID: 561400970}

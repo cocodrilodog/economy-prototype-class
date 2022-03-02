@@ -5,9 +5,13 @@ namespace EconomyPrototype {
     using UnityEngine;
 
     /// <summary>
-    /// This is a <see cref="ScriptableObject"/> that will store 
-    /// the application variables that define the app state.
+    /// This is a <see cref="ScriptableObject"/> that will store the application 
+    /// variables that define the app state.
     /// </summary>
+    /// <remarks>
+    /// This variables will be updated as the application is running and will reflect
+    /// its status or "state" as it is called in the programming lingo.
+    /// </remarks>
     [CreateAssetMenu(menuName = "Economy Prototype/App State")]
     public class AppState : ScriptableObject {
 
@@ -25,9 +29,17 @@ namespace EconomyPrototype {
         [SerializeField]
         public Resource CurrentResources;
 
+        /// <summary>
+        /// The number of activities that have started and ended (played/stopped).
+        /// </summary>
+        [Tooltip("The number of activities that have started and ended (played/stopped)")]
         [SerializeField]
         public int CompletedActivities;
 
+        /// <summary>
+        /// The proceeds currently collected.
+        /// </summary>
+        [Tooltip("The proceeds currently collected")]
         [SerializeField]
         public float CurrentProceeds;
 
@@ -61,6 +73,7 @@ namespace EconomyPrototype {
 
         #region Unity Methods
 
+        // This will be invoked when the asset is created
         private void Awake() {
 			Restore();
 		}

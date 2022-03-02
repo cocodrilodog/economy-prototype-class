@@ -24,14 +24,18 @@ namespace EconomyPrototype {
 		[Header("Data")]
 
 		/// <summary>
-		/// This is a reference to the <see cref="AppState"/> asset.
+		/// A reference to the <see cref="EconomyPrototype.AppSettings"/>
+		/// </summary>
+		[Tooltip("A reference to the AppSettings")]
+		[SerializeField]
+		public AppSettings AppSettings;
+
+		/// <summary>
+		/// A reference to the <see cref="EconomyPrototype.AppState"/>
 		/// </summary>
 		[Tooltip("This is a reference to AppState asset.")]
 		[SerializeField]
 		public AppState AppState;
-
-		[SerializeField]
-		public AppSettings AppSettings;
 
 		/// <summary>
 		/// This is the profile that will be used by this activity.
@@ -53,9 +57,18 @@ namespace EconomyPrototype {
 		[SerializeField]
 		public ResourcesDisplay ResourcesDisplay;
 
+		/// <summary>
+		/// A reference to the UI object that shows the checks, representing the
+		/// completed activities.
+		/// </summary>
+		[Tooltip("A reference to the UI object that shows the checks, representing the completed activities")]
 		[SerializeField]
 		public ActivityChecks ActivityChecks;
 
+		/// <summary>
+		/// A bar that measures the collected proceeds.
+		/// </summary>
+		[Tooltip("A bar that measures the collected proceeds.")]
 		[SerializeField]
 		public Image ProceedsMeter;
 
@@ -99,11 +112,13 @@ namespace EconomyPrototype {
 		/// it also resets the time of the playback.
 		/// </remarks>
 		public void Stop() {
+			// This condition avoids causes the stop functionality to be invoked
+			// only when the activity is actually playing. Otherwise, the player
+			// may stop multiple times, increasing the completed activities counter
 			if (PlaybackTime > 0) {
 
 				PlaybackTime = 0;
 				
-				Debug.Log("Stop");
 				m_IsPlaying = false;
 				m_PlayButton.SetActive(true);
 				m_PauseButton.SetActive(false);
@@ -118,7 +133,6 @@ namespace EconomyPrototype {
 		/// Makes the activity to start running.
 		/// </summary>
 		public void Play() {
-			Debug.Log("Play");
 			m_IsPlaying = true;
 			m_PlayButton.SetActive(false);
 			m_PauseButton.SetActive(true);
@@ -129,7 +143,6 @@ namespace EconomyPrototype {
 		/// Pauses the activity.
 		/// </summary>
 		public void Pause() {
-			Debug.Log("Pause");
 			m_IsPlaying = false;
 			m_PlayButton.SetActive(true);
 			m_PauseButton.SetActive(false);
@@ -207,18 +220,21 @@ namespace EconomyPrototype {
 		#region Private Methods
 
 		private IEnumerator UpdatePlaybackTime() {
+			// This will run every frame while m_IsPlaying = true
 			while (m_IsPlaying) {
 
+				// Increase the playback time
 				PlaybackTime += Time.deltaTime;
 
 				// Consume the resources
 				AppState.CurrentResources = AppState.CurrentResources - Profile.ResourceConsumptionSpeed * Time.deltaTime;
-				ResourcesDisplay.OnResourceChange();
+				ResourcesDisplay.UpdateMeters();
 
 				// Here we obtain the proceeds
 				AppState.CurrentProceeds = AppState.CurrentProceeds + Profile.ProceedsSpeed * Time.deltaTime;
 				ProceedsMeter.fillAmount = AppState.CurrentProceeds / AppSettings.MinProceeds;
 
+				// Returning null causes the while to be executed during the next frame again.
 				yield return null;
 
 			}
