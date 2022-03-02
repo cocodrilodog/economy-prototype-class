@@ -174,12 +174,22 @@ namespace EconomyPrototype {
             Time.timeScale = 0;
             GameEndPopup.gameObject.SetActive(true);
 
-            if(AppState.CompletedActivities >= AppSettings.MinActivities) {
+            if (AppState.CompletedActivities >= AppSettings.MinActivities && 
+                AppState.CurrentProceeds >= AppSettings.MinProceeds) {
                 // Here I win
-                GameEndPopup.ShowMessage($"You win!\nYou completed {AppSettings.MinActivities} activities or more.");
+                GameEndPopup.ShowMessage(
+                    $"You won!\nYou completed {AppSettings.MinActivities} activities or more and you collected {AppSettings.MinProceeds} proceeds."
+                );
 			} else {
                 // Here I lose
-                GameEndPopup.ShowMessage($"You lose :(\nYou didn't complete at least {AppSettings.MinActivities} activities.");
+                string message = "You Lose :(";
+                if(AppState.CompletedActivities < AppSettings.MinActivities) {
+                    message += $"\nYou didn't complete at least {AppSettings.MinActivities} activities.";
+                }
+                if (AppState.CurrentProceeds < AppSettings.MinProceeds) {
+                    message += $"\nYou didn't collect at least {AppSettings.MinProceeds} proceeds.";
+                }
+                GameEndPopup.ShowMessage(message);
             }
 
         }
